@@ -15,17 +15,32 @@ Instructions:
 4. Print your results in a clear, formatted way.
 """
 
-# TODO: Create the datasets - up to you to fill in the data
-temperatures = []
-city_population = {}
+# Create the datasets
+temperatures = [15.2, 16.8, 14.9, 17.5, 18.0, 16.1, 15.7]  # daily temps for one week
+city_population = {
+    "Riga": 632614,
+    "Daugavpils": 82357,
+    "Liepaja": 68106,
+    "Jelgava": 55711,
+    "Jurmala": 48001,
+}
 
-# TODO: Compute aggregates
-average_temperature = 0
-largest_city = ""
-largest_population = 0
-total_population = 0
+# Compute aggregates
+average_temperature = sum(temperatures) / len(temperatures) if temperatures else 0.0
+total_population = sum(city_population.values())
+largest_city = max(city_population, key=city_population.get)
+largest_population = city_population[largest_city]
+smallest_city = min(city_population, key=city_population.get)
+smallest_population = city_population[smallest_city]
 
-# TODO: Print results
-print("Average temperature:", average_temperature)
-print("Largest city:", largest_city, "-", largest_population)
-print("Total population:", total_population)
+# Print results
+print(f"Temperatures (week): {temperatures}")
+print(f"Average temperature: {average_temperature:.2f}°C")
+print()
+print("City populations:")
+for city, pop in city_population.items():
+    print(f" - {city}: {pop:,}")
+print()
+print(f"Largest city: {largest_city} - {largest_population:,}")
+print(f"Smallest city: {smallest_city} - {smallest_population:,}")
+print(f"Total population (all cities): {total_population:,}")
